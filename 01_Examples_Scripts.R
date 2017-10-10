@@ -36,3 +36,16 @@ nmonths(flights_xts)
 
 # Find data on flights arriving in BOS in June 2014
 flights_xts["2014-06"]
+
+# Use plot.xts() to view total monthly flights into BOS over time
+plot.xts(flights_xts$total_flights)
+
+# Use plot.xts() to view monthly delayed flights into BOS over time
+plot.xts(flights_xts$delay_flights)
+
+# Use plot.zoo() to view all four columns of data in their own panels
+plot.zoo(flights_xts, plot.type = "multiple", ylab = labels)
+
+# Use plot.zoo() to view all four columns of data in one panel
+plot.zoo(flights_xts, plot.type = "single", lty = lty)
+legend("right", lty = lty, legend = labels)
