@@ -14,3 +14,16 @@ X <- xts(x, order.by = idx)
 
 X
 # https://www.rdocumentation.org/packages/xts/versions/0.9-7
+
+
+# Convert date column to a time-based class
+flights$date <- as.Date(flights$date)
+
+# Convert flights to an xts object using as.xts
+flights_xts <- as.xts(flights [ , -5], order.by = flights$date)
+
+# Check the class of flights_xts
+class(flights_xts)
+
+# Examine the first five lines of flights_xts
+head(flights_xts, 5)
