@@ -121,3 +121,16 @@ head(flights_temps)
 # Use plot.zoo to plot these two columns in a single panel
 plot.zoo(flights_temps[,c("pct_delay", "temps_monthly")], plot.type = "single", lty = lty)
 legend("topright", lty = lty, legend = labels, bg = "white")
+
+############## Plots of periods, zooming plots
+# Identify the periodicity of temps_xts
+periodicity(temps_xts)
+
+# Generate a plot of mean Boston temperature for the duration of your data
+plot.xts(temps_xts$mean)
+
+# Generate a plot of mean Boston temperature from November 2010 through April 2011
+plot.xts(temps_xts$mean["2010-11/2011-04"])
+
+# Use plot.zoo to generate a single plot showing mean, max, and min temperatures during the same period 
+plot.zoo(temps_xts["2010-11/2011-04"], plot.type = "single", lty = lty)
