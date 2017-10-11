@@ -111,3 +111,13 @@ temps_monthly <- as.xts(as.numeric(mean_of_means), order.by = index)
 periodicity(temps_monthly)
 periodicity(flights_xts)
 
+############## Using merge() and plotting over time
+# Use merge to combine your flights and temperature objects
+flights_temps <- merge(flights_xts, temps_monthly)
+
+# Examine the first few rows of your combined xts object
+head(flights_temps)
+
+# Use plot.zoo to plot these two columns in a single panel
+plot.zoo(flights_temps[,c("pct_delay", "temps_monthly")], plot.type = "single", lty = lty)
+legend("topright", lty = lty, legend = labels, bg = "white")
