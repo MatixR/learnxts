@@ -97,5 +97,17 @@ temps_xts <- rbind(temps_1_xts, temps_2_xts)
 first(last(first(temps_xts, "1 year"), "1 month"), "3 days")
 
 
-#################
+################# Generating a monthly average
+# Split temps_xts_2 into separate lists per month #this generates the list
+monthly_split <- split(temps_xts_2$mean , f = "months")
+
+# Use lapply to generate the monthly mean of mean temperatures
+mean_of_means <- lapply(monthly_split, FUN = mean)
+
+# Use as.xts to generate an xts object of average monthly temperature data
+temps_monthly <- as.xts(as.numeric(mean_of_means), order.by = index)
+ 
+# Compare the periodicity and duration of your new temps_monthly and flights_xts 
+periodicity(temps_monthly)
+periodicity(flights_xts)
 
