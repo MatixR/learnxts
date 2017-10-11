@@ -134,3 +134,16 @@ plot.xts(temps_xts$mean["2010-11/2011-04"])
 
 # Use plot.zoo to generate a single plot showing mean, max, and min temperatures during the same period 
 plot.zoo(temps_xts["2010-11/2011-04"], plot.type = "single", lty = lty)
+
+
+############# WORKFLOW FOR MERGING #############
+# 1 eNCODE ALL TIMESERIES OBJECTS TO XTS
+data_1_xts <- as.xts(data_1, order.by = index)
+
+# 2. Examine and adjust periodicity
+periodicity(data_1_xts)
+to.period(data_1_xts, period = "years")
+
+# 3. merge xts objects
+merged_data <- merge(data_1_xts, data_2_xts)
+
