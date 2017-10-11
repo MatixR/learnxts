@@ -76,3 +76,26 @@ class(flights_xts2)
 
 # Examine the first five rows of your new flights_xts2 object
 head(flights_xts2, 5)
+
+##############  Merging using rbind()
+# Confirm that the date column in each object is a time-based class
+class(temps_1$date)
+class(temps_2$date)
+
+# Encode your two temperature data frames as xts objects
+temps_1_xts <- as.xts(temps_1[, -4], order.by = temps_1$date)
+temps_2_xts <- as.xts(temps_2[, -4], order.by = temps_2$date)
+
+# View the first few lines of each new xts object to confirm they are properly formatted
+head(temps_1_xts)
+head(temps_2_xts)
+
+# Use rbind to merge your new xts objects
+temps_xts <- rbind(temps_1_xts, temps_2_xts)
+
+# View data for the first 3 days of the last month of the first year in temps_xts
+first(last(first(temps_xts, "1 year"), "1 month"), "3 days")
+
+
+#################
+
